@@ -1,11 +1,17 @@
 package Vistas;
 
+import Clases.Producto;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 
 public class Productos extends javax.swing.JFrame {
 
+   ArrayList <Producto> productos = new ArrayList <>(); 
     
     public Productos() {
         initComponents();
+        llenarComboBox();
     }
 
    
@@ -131,15 +137,45 @@ public class Productos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     //Métodos adicionales 
+    
+    public void llenarComboBox(){
+    
+        String [] categorias =  {"Perfumeria", "Ropa", "Farmacia", "Limpieza", "Comestible", "Otros"};
+        
+        for (String categoria : categorias) {
+            jcbCategoria.addItem(categoria);
+        }
+    }
+    
+    
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
+        
+        if (!jtfNombre.getText().isEmpty() && !jtfPrecio.getText().isEmpty() ) {
+            
+            JOptionPane.showMessageDialog(null, "Entré");
+            
         String nombre = jtfNombre.getText();
         Double precio = Double.valueOf(jtfPrecio.getText());
+        String cat = (String) jcbCategoria.getSelectedItem();
+            
         
+        productos.add(new Producto(nombre, cat, precio));
         
+        for (Producto producto : productos) {
+            JOptionPane.showMessageDialog(rootPane, producto);
+        }
         
+        jcbCategoria.setSelectedIndex(0);
+        jtfNombre.setText("");
+        jtfPrecio.setText("");
+        
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Hay campos vacíos. Debe ingresar datos para continuar");
+            
+        }
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 

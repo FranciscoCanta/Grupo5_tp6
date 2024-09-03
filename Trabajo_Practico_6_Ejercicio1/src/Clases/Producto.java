@@ -11,13 +11,14 @@ package Clases;
 public class Producto {
     
     private String nombre;
-    private String categoria;
     private double precio;
+    private String categoria; 
+    
 
     public Producto(String nombre, String categoria, double precio) {
         this.nombre = nombre;
-        this.categoria = categoria;
         this.precio = precio;
+        this.categoria = categoria; 
     }
 
     public String getNombre() {
@@ -28,6 +29,14 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
     public String getCategoria() {
         return categoria;
     }
@@ -36,12 +45,9 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    @Override
+    public String toString() {
+        return "Producto{" + "nombre=" + nombre + ", precio=" + precio + ", categoria=" + categoria + '}';
     }
 
     
