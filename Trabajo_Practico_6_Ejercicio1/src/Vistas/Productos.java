@@ -3,22 +3,38 @@ package Vistas;
 import Clases.Producto;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Productos extends javax.swing.JFrame {
 
-   ArrayList <Producto> productos = new ArrayList <>(); 
-    
+    private ArrayList<Producto> productos = new ArrayList<>();
+
+    //Instanciamos la tabla 
+    private DefaultTableModel tabla = new DefaultTableModel() {
+
+        @Override                                                                           //Este método sirve para no editar las celdas.  (lo llamamos con el "generate Code al Override")
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+
+    };
+
+   //Constructor
     public Productos() {
         initComponents();
         llenarComboBox();
+        instanciarCabecera(); 
     }
 
-   
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -30,6 +46,12 @@ public class Productos extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,8 +160,8 @@ public class Productos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    //Métodos adicionales 
     
+    //Métodos adicionales 
     public void llenarComboBox(){
     
         String [] categorias =  {"Perfumeria", "Ropa", "Farmacia", "Limpieza", "Comestible", "Otros"};
@@ -147,39 +169,56 @@ public class Productos extends javax.swing.JFrame {
         for (String categoria : categorias) {
             jcbCategoria.addItem(categoria);
         }
+        
+        jcbCategoria.setSelectedIndex(-1); //Para que el casillero empiece limpio
     }
     
-    
+    public void instanciarCabecera(){
+        
+        tabla.addColumn("Nombre");
+        tabla.addColumn("Categoria");
+        tabla.addColumn("Precio");
+        
+        jTable2.setModel(tabla);
+    } 
+            
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
-        if (!jtfNombre.getText().isEmpty() && !jtfPrecio.getText().isEmpty() ) {
-            
-            JOptionPane.showMessageDialog(null, "Entré");
-            
-        String nombre = jtfNombre.getText();
-        Double precio = Double.valueOf(jtfPrecio.getText());
-        String cat = (String) jcbCategoria.getSelectedItem();
-            
-        
-        productos.add(new Producto(nombre, cat, precio));
-        
-        for (Producto producto : productos) {
-            JOptionPane.showMessageDialog(rootPane, producto);
-        }
-        
-        jcbCategoria.setSelectedIndex(0);
-        jtfNombre.setText("");
-        jtfPrecio.setText("");
-        
-        }else{
-            
+        //Con el if vemos si se completaron todos los campos 
+        if (!jtfNombre.getText().isEmpty() && !jtfPrecio.getText().isEmpty() && jcbCategoria.getSelectedItem() != null) {
+
+            //Guardamos los valores en variables
+            String nombre = jtfNombre.getText();
+            Double precio = Double.valueOf(jtfPrecio.getText());
+            String cat = (String) jcbCategoria.getSelectedItem();
+
+            //Llenamos el ArrayList
+            productos.add(new Producto(nombre, cat, precio));
+
+            //Limpiamos los campos
+            jcbCategoria.setSelectedIndex(-1);
+            jtfNombre.setText("");
+            jtfPrecio.setText("");
+
+            //Limpiamos la tabla
+            tabla.setRowCount(0);
+
+            //Llenamos la tabla 
+            for (Producto p : productos) {
+                tabla.addRow(new Object[]{
+                    p.getNombre(),
+                    p.getCategoria(),
+                    p.getPrecio()
+                });
+
+            }
+
+        } else {
             JOptionPane.showMessageDialog(null, "Hay campos vacíos. Debe ingresar datos para continuar");
-            
         }
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -216,6 +255,9 @@ public class Productos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
