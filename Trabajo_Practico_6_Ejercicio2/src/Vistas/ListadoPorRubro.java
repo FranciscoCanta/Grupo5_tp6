@@ -12,7 +12,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         
         @Override
         public boolean isCellEditable(int row, int column) {
-            return super.isCellEditable(row, column); 
+            return false; 
         }
     }; //Instancio la tabla 
    

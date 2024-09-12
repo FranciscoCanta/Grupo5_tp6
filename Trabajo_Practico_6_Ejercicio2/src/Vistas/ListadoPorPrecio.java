@@ -12,7 +12,7 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
         
         @Override
         public boolean isCellEditable(int row, int column) {
-            return super.isCellEditable(row, column); 
+            return false; 
         }
     };    //Instanciando la tabla
             
