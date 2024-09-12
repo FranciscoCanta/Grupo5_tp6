@@ -7,9 +7,9 @@ import trabajo_practico_6.Producto;
 public class Principal extends javax.swing.JFrame {
 
     //Atributos y Colecciones
-    private  TreeSet <Producto> productos = new TreeSet<>();   //Con esto conecto los TreeSet con las clases
+    private  TreeSet <Producto> productos = new TreeSet<>();             //Con esto conecto los TreeSet con las clases
     //podría ser static para no pasar por parámetros
-    //private static TreeSet <Producto> productos = new TreeSet<>();
+    //Por ejemplo: private static TreeSet <Producto> productos = new TreeSet<>();
     //Se transforma en variable global. Reemplaza el parámetro. Llamaríamos por la clase y no por instancia de clase.
      
     //Constructor 

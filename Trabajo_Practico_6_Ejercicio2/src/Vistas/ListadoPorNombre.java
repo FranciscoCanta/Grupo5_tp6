@@ -99,8 +99,6 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //Métodos Adicionales
-    
-    //Listo
     public void instanciarCabecera(){
         
         tabla.addColumn("Código");
@@ -112,19 +110,15 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
         jtable1.setModel(tabla);
     }
     
-    
     private void jtfNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreKeyReleased
 
-        //tabla.setRowCount(0);
-        
         String textoIngresado = jtfNombre.getText().trim(); // el ".trim" elimina los espacios que puede haber al principio y al final del texto. (NO AFECTA LOS ESPACIOS ENTRE PALABRAS). ("  Juan   "  = "juan"), ("   hola mundo   " =  "hola mundo")
-        
-        
+
         tabla.setRowCount(0);
 
         for (Producto producto : productos) {
             // Verifica si el código del producto coincide con lo ingresado
-            if ( producto.getDescripcion().toLowerCase().contains(textoIngresado.toLowerCase())) { //El lowercase convierte todas las letras en minúsculas. y el contains se usa para verificar si una cadena de texto contiene una secuencia específica de caracteres  o un elemento en particular
+            if (producto.getDescripcion().toLowerCase().startsWith(textoIngresado.toLowerCase())) { //El lowercase convierte todas las letras en minúsculas. El startsWith significa "start = comenzar" y  "with = con" significa "comenzar con:"  Y el contains se usa para verificar si una cadena de texto contiene una secuencia específica de caracteres  presiono "co" para buscar "coca cola" pero me aparece "coca cola y paco rabanne" ya que paco rabanne contiene en sus palabras el "co"
                 // Agregar el producto a la tabla
                 tabla.addRow(new Object[]{
                     producto.getCodigo(),
@@ -135,10 +129,6 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
                 });
             }
         }
-
-        
-//Tengo que ver cómo uso el KeyReleased (este método con el que me encuentro), luego programar lo mismo pero para listadoporprecio, y por último ver el botón guardar (keyReleased)
-        
     }//GEN-LAST:event_jtfNombreKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

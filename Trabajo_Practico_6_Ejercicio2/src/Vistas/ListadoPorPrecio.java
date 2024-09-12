@@ -18,8 +18,6 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
             
     private TreeSet <Producto> productos = new TreeSet<>(); 
     
-    
-
     //Constructor 
     public ListadoPorPrecio(TreeSet <Producto> productos) {
         initComponents();
@@ -167,6 +165,7 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
             }
         }catch(Exception e){
             System.out.println("Entrando a la excepción de filtrarProductos: " +e.toString());
+            jtfPrecioMin.requestFocus();
         }
         
     }                                                               //Este método se encarga de poder trabajar con el KeyReleased de jtfPrecioMin y jtfPrecioMax al mismo tiempo

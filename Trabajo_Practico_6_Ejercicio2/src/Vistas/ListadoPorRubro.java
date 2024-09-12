@@ -121,23 +121,22 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     }; 
     
     private void jcbRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbRubroActionPerformed
-        
-        tabla.setRowCount(0);
-        
-       for (Producto producto : productos) {
-         
-            if (jcbRubro.getSelectedItem() == producto.getRubro()) {      
-                
-                    tabla.addRow(new Object[]{          //Instancio una fila y como hay que pasarle un objeto a la fila lo creo y le paso los atributos del producto indicado gracias al if de arriba.
-                        producto.getCodigo(),                                         
-                        producto.getDescripcion(),
-                        producto.getPrecio(),
-                        producto.getCategoria(),
-                        producto.getStock()
-                    });
+
+        tabla.setRowCount(0);         //Con esto limpiamos las filas de la tabla 
+
+        for (Producto producto : productos) {
+
+            if (jcbRubro.getSelectedItem() == producto.getRubro()) {
+
+                tabla.addRow(new Object[]{ //Instancio una fila y como hay que pasarle un objeto a la fila lo creo y le paso los atributos del producto indicado gracias al if de arriba.
+                    producto.getCodigo(),
+                    producto.getDescripcion(),
+                    producto.getPrecio(),
+                    producto.getCategoria(),
+                    producto.getStock()
+                });
             }
         }
-        
     }//GEN-LAST:event_jcbRubroActionPerformed
 
 

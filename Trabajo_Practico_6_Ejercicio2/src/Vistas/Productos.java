@@ -26,7 +26,7 @@ public class Productos extends javax.swing.JInternalFrame {
         llenarComboBoxs(); 
         instanciarCabecera(); 
         
-            //STOCK
+            //STOCK (AGREGANDO PRODUCTOS PARA NO AGREGARLOS POR CONSOLA)
     // productos.add(new Producto(codigo, descripcion, precio, stock, rubro));
      productos.add(new Producto(001, "primero", 1111, 1, "Comestible"));
      productos.add(new Producto(002, "segundo", 2222, 2, "Comestible"));
@@ -83,12 +83,6 @@ public class Productos extends javax.swing.JInternalFrame {
         jLabel8.setText("Rubro: ");
 
         jLabel9.setText("Stock:");
-
-        jcbRubro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbRubroActionPerformed(evt);
-            }
-        });
 
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -275,23 +269,23 @@ public class Productos extends javax.swing.JInternalFrame {
 
     //Métodos Adicionales 
     public void llenarComboBoxs(){
-        
-        String categoria [] = {"Comestible", "Limpieza", "Perfumeria"};
-        
+
+        String categoria[] = {"Comestible", "Limpieza", "Perfumeria"};
+
         for (String producto : categoria) {
             jcbCategoria.addItem(producto);  // Lleno el combo box 
         }
-        
+
         jcbCategoria.setSelectedIndex(-1);    //Esto es para que el combo box aparezca vacío
-        
+
         //Ahora lleno el comboBox de Rubro:
         for (String producto : categoria) {
             jcbRubro.addItem(producto);
         }
-        
+
         jcbRubro.setSelectedIndex(-1);    //Esto es para que el combo box de Rubro aparezca vacío
-        
-    }; //Listo
+
+    } //Listo
     
     public void instanciarCabecera(){
         
@@ -304,7 +298,6 @@ public class Productos extends javax.swing.JInternalFrame {
         jTable1.setModel(tabla);
     }  //Listo
 
-    //Listo
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
 
         jtfCodigo.setText("");
@@ -315,38 +308,33 @@ public class Productos extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnNuevoActionPerformed
 
-    //Listo
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
 
         dispose(); 
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    //Listo
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
-     Long codigo = Long.parseLong(jtfCodigo.getText()); //Lo utilizo en el if ya que comparo 2 datos que son de tipo long 
-     
-     tabla.setRowCount(0);                  //Se utiliza para limpiar todas las filas de la tabla. 
-     jcbCategoria.setSelectedIndex(-1);  //Cuando utilizo el botón buscar, el combo box de categoria se resetea. 
-     
-     for (Producto producto : productos) {
-         
+        Long codigo = Long.parseLong(jtfCodigo.getText()); //Lo utilizo en el if ya que comparo 2 datos que son de tipo long 
+
+        tabla.setRowCount(0);                  //Se utiliza para limpiar todas las filas de la tabla. 
+        jcbCategoria.setSelectedIndex(-1);  //Cuando utilizo el botón buscar, el combo box de categoria se resetea. 
+
+        for (Producto producto : productos) {
+
             if (codigo == producto.getCodigo()) {      //Hago la comparación si el codigo ingresado en el jtf es igual al código del producto que está recorriendo el for each. 
-                
-                    tabla.addRow(new Object[]{          //Instancio una fila y como hay que pasarle un objeto a la fila lo creo y le paso los atributos del producto indicado gracias al if de arriba.
-                        producto.getCodigo(),                                         
-                        producto.getDescripcion(),
-                        producto.getPrecio(),
-                        producto.getCategoria(),
-                        producto.getStock()
-                    });
+
+                tabla.addRow(new Object[]{ //Instancio una fila y como hay que pasarle un objeto a la fila lo creo y le paso los atributos del producto indicado gracias al if de arriba.
+                    producto.getCodigo(),
+                    producto.getDescripcion(),
+                    producto.getPrecio(),
+                    producto.getCategoria(),
+                    producto.getStock()
+                });
             }
         }
-
-
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    //Listo
     private void jcbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriaActionPerformed
 
        //Limpiamos la tabla
@@ -369,7 +357,6 @@ public class Productos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jcbCategoriaActionPerformed
 
-    //Listo (falta algo pequeño)
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
         //Guardamos las variables 
@@ -384,14 +371,8 @@ public class Productos extends javax.swing.JInternalFrame {
         productos.add(new Producto(codigo, descripcion, precio, stock, rubro)); 
         
         JOptionPane.showMessageDialog(null, "El producto se guardó correctamente!");
-        
-        //Esto de abajo es para hacer que el botón guardar se active si se completan todos estos campos
-        //jtfCodigo.getText() != null && jtfDescripcion.getText() != null && jtfPrecio.getText() != null  && jcbRubro.getSelectedItem() != null
-     
-        
     }//GEN-LAST:event_btnGuardarActionPerformed
     
-    //Listo
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         Long codigo = Long.parseLong(jtfCodigo.getText()); //Lo utilizo en el if ya que comparo 2 datos que son de tipo long
@@ -429,10 +410,6 @@ public class Productos extends javax.swing.JInternalFrame {
         }
     }
     }//GEN-LAST:event_btnActualizarActionPerformed
-
-    private void jcbRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbRubroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbRubroActionPerformed
 
     
 
