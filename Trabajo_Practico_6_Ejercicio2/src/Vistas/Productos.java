@@ -18,13 +18,29 @@ public class Productos extends javax.swing.JInternalFrame {
     }; //Instancio la tabla
 
     private TreeSet <Producto> productos = new TreeSet<>(); 
-    
+       
     //Constructor
     public Productos(TreeSet <Producto> productos) {
         initComponents();
         this.productos = productos;                                             //Con esto conecto los TreeSet con las clases
         llenarComboBoxs(); 
         instanciarCabecera(); 
+        
+            //STOCK
+    // productos.add(new Producto(codigo, descripcion, precio, stock, rubro));
+     productos.add(new Producto(001, "primero", 1111, 1, "Comestible"));
+     productos.add(new Producto(002, "segundo", 2222, 2, "Comestible"));
+     productos.add(new Producto(003, "tercero", 3333, 3, "Limpieza"));
+     productos.add(new Producto(004, "cuarto", 4444, 4, "Limpieza"));
+     productos.add(new Producto(005, "quinto", 5555, 5, "Perfumeria"));
+     productos.add(new Producto(006, "sexto", 6666, 6, "Perfumeria"));
+     productos.add(new Producto(007, "galletitas", 1300, 1, "Comestible"));
+     productos.add(new Producto(007, "arroz", 4000, 1, "Comestible"));
+     productos.add(new Producto(010, "lavandina", 900, 4, "Limpieza"));
+     productos.add(new Producto(010, "detergente", 500, 4, "Limpieza"));
+     productos.add(new Producto(011, "perfume", 200, 5, "Perfumeria"));
+     productos.add(new Producto(012, "pasta dental", 600, 6, "Perfumeria"));
+ 
     }
 
 
@@ -67,6 +83,12 @@ public class Productos extends javax.swing.JInternalFrame {
         jLabel8.setText("Rubro: ");
 
         jLabel9.setText("Stock:");
+
+        jcbRubro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbRubroActionPerformed(evt);
+            }
+        });
 
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -407,6 +429,10 @@ public class Productos extends javax.swing.JInternalFrame {
         }
     }
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void jcbRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbRubroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbRubroActionPerformed
 
     
 
