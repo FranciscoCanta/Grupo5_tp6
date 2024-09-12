@@ -83,6 +83,11 @@ public class Productos extends javax.swing.JInternalFrame {
         });
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -364,6 +369,7 @@ public class Productos extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    
     //Listo
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
@@ -383,6 +389,27 @@ public class Productos extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+
+       Long codigo = Long.parseLong(jtfCodigo.getText()); // Obtener el código del campo de texto
+
+    // Buscar el producto por código
+    for (Producto producto : productos) {
+        if (codigo.equals(producto.getCodigo())) { // Comparar el código ingresado con el del producto
+            // Actualizar los atributos del producto
+            producto.setDescripcion(jtfDescripcion.getText());
+            producto.setPrecio(Double.parseDouble(jtfPrecio.getText())); 
+             producto.setCategoria((String) jcbCategoria.getSelectedItem());
+            producto.setStock((int)jsStock.getValue());
+            
+            // Opción de mostrar un mensaje de éxito
+            JOptionPane.showMessageDialog(this, "Producto actualizado exitosamente.");
+            break; // Salir del bucle una vez que se actualizó el producto
+        }
+    }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
