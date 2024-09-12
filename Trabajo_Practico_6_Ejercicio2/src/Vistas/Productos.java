@@ -347,7 +347,7 @@ public class Productos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jcbCategoriaActionPerformed
 
-    //Listo   (borrar lo de mostrar los agregados)
+    //Listo (falta algo pequeño)
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
         //Guardamos las variables 
@@ -368,7 +368,6 @@ public class Productos extends javax.swing.JInternalFrame {
      
         
     }//GEN-LAST:event_btnGuardarActionPerformed
-
     
     //Listo
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

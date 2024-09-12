@@ -17,6 +17,8 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
     };    //Instanciando la tabla
             
     private TreeSet <Producto> productos = new TreeSet<>(); 
+    
+    
 
     //Constructor 
     public ListadoPorPrecio(TreeSet <Producto> productos) {
@@ -44,6 +46,18 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
         jLabel2.setText("Entre: ");
 
         jLabel3.setText("y:");
+
+        jtfPrecioMin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfPrecioMinKeyReleased(evt);
+            }
+        });
+
+        jtfPrecioMax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfPrecioMaxKeyReleased(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,8 +114,63 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Métodos adicionales
+    private void jtfPrecioMinKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecioMinKeyReleased
+
+       filtrarProductos(); 
+    }//GEN-LAST:event_jtfPrecioMinKeyReleased
+
+    private void jtfPrecioMaxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecioMaxKeyReleased
+
+            filtrarProductos(); 
+     
+    }//GEN-LAST:event_jtfPrecioMaxKeyReleased
+
+    public void filtrarProductos(){
+
+        tabla.setRowCount(0);   //Limpiamos la tabla 
+
+        int precioMin;
+        int precioMax;
+        
+        try {
+            
+            if (!jtfPrecioMin.getText().isEmpty()) {
+
+                precioMin = Integer.parseInt(jtfPrecioMin.getText());
+                
+            } else {
+                precioMin = 0;
+            }
+
+            if (!jtfPrecioMax.getText().isEmpty()) {
+
+                precioMax = Integer.parseInt(jtfPrecioMax.getText());
+
+            } else {
+                precioMax = Integer.MAX_VALUE;
+            }
+
+            //Acá hacemos la comparación de 
+            for (Producto producto : productos) {
+
+                if (producto.getPrecio() >= precioMin && producto.getPrecio() <= precioMax) {
+
+                    tabla.addRow(new Object[]{
+                        producto.getCodigo(),
+                        producto.getDescripcion(),
+                        producto.getPrecio(),
+                        producto.getCategoria(),
+                        producto.getStock()
+                    });
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Entrando a la excepción de filtrarProductos: " +e.toString());
+        }
+        
+    }                                                               //Este método se encarga de poder trabajar con el KeyReleased de jtfPrecioMin y jtfPrecioMax al mismo tiempo
     
-    //Métodos adicionales 
     public void instanciarCabecera(){
         
         tabla.addColumn("Código");
